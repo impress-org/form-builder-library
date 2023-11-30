@@ -6,6 +6,7 @@ import {draggable, minusCircle} from './icons';
 import {OptionsItemProps} from './types';
 import CurrencyControl from '../CurrencyControl';
 import {isCurrencyMode} from './utils';
+import {CurrencyCode} from '../CurrencyControl/CurrencyCode';
 
 export default function OptionsItem({
     currency,
@@ -21,9 +22,6 @@ export default function OptionsItem({
     handleRemoveOption,
     readOnly,
 }: OptionsItemProps) {
-    // @ts-ignore
-    //const {CurrencyControl} = window.givewp.form.components;
-
     return (
         <div className={'givewp-options-list--item'} ref={provided.innerRef} {...provided.draggableProps}>
             <span className={'givewp-options-list--item--draggable'} {...provided.dragHandleProps}>
@@ -54,7 +52,7 @@ export default function OptionsItem({
             >
                 {isCurrencyMode(currency) ? (
                     <CurrencyControl
-                        currency={currency}
+                        currency={currency as CurrencyCode}
                         label={__('Donation amount level', 'give')}
                         hideLabelFromVision
                         value={option.value}
