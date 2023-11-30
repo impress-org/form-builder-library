@@ -1,7 +1,7 @@
 import {BaseControl, Button} from '@wordpress/components';
 
 import {plusCircle} from './icons';
-import {OptionsHeaderProps} from '@givewp/form-builder/components/OptionsPanel/types';
+import {OptionsHeaderProps} from './types';
 
 export default function OptionsHeader({handleAddOption, label, readOnly}: OptionsHeaderProps) {
     return (
