@@ -16,6 +16,8 @@ import {useEffect, useRef, useState} from '@wordpress/element';
 import {BACKSPACE, DELETE, F10, isKeyboardEvent} from '@wordpress/keycodes';
 import {BaseControl} from '@wordpress/components';
 
+import './styles.scss';
+
 // @ts-ignore
 const {wp} = window;
 
@@ -37,13 +39,13 @@ function isTmceEmpty(editor) {
 
 interface ClassicEditorProps {
     id: string;
-    label: string;
+    label?: string;
     content: string;
     setContent: (content: string) => void;
     rows?: number;
 }
 
-export default function ClassicEditor({id, label, content, setContent, rows = 20}: ClassicEditorProps) {
+export default function ClassicEditor({id, label = null, content, setContent, rows = 20}: ClassicEditorProps) {
     const didMount = useRef(false);
 
     const [editorContent, setEditorContent] = useState(content);
@@ -55,6 +57,16 @@ export default function ClassicEditor({id, label, content, setContent, rows = 20
 
         setContent(editorContent);
     }, [editorContent]);
+
+    useEffect(() => {
+        if (!didMount.current || editorContent === content) {
+            return;
+        }
+
+        const editor = window.tinymce.get(`editor-${id}`);
+
+        editor.setContent(content);
+    }, [content]);
 
     useEffect(() => {
         didMount.current = true;
@@ -152,16 +164,18 @@ export default function ClassicEditor({id, label, content, setContent, rows = 20
         function initialize() {
             setTimeout(() => {
                 wp.editor.initialize(`editor-${id}`, {
-                    mediaButtons: true,
+                    mediaButtons: false,
                     tinymce: {
                         tinymce: true,
                         plugins:
                             'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview',
                         toolbar1:
-                            'formatselect,bold,italic,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,unlink,wp_more,fullscreen,wp_adv',
+                            'bold,italic,wp_add_media,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,fullscreen,wp_adv',
                         toolbar2:
-                            'wp_add_media,strikethrough,hr,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help',
+                            'formatselect,strikethrough,hr,forecolor,pastetext,removeformat,unlink,outdent,indent,undo,redo',
                         setup: onSetup,
+                        resize: false,
+                        statusbar: false,
                     },
                     quicktags: true,
                 });
