@@ -16,7 +16,7 @@ import {useEffect, useRef, useState} from '@wordpress/element';
 import {BACKSPACE, DELETE, F10, isKeyboardEvent} from '@wordpress/keycodes';
 import {BaseControl} from '@wordpress/components';
 
-import './styles.scss';
+import './style.scss';
 
 // @ts-ignore
 const {wp} = window;
