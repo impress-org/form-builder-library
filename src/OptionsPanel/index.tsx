@@ -7,7 +7,7 @@ import {OptionsPanelProps} from './types';
 import {isCurrencyMode} from './utils';
 import {CurrencyCode} from '../CurrencyControl/CurrencyCode';
 
-import './style.scss';
+import './styles.scss';
 
 export default function Options({
     currency,
