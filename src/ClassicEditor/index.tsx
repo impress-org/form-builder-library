@@ -63,6 +63,7 @@ export default function ClassicEditor({id, label = null, content, setContent, ro
             return;
         }
 
+        // @ts-ignore
         const editor = window.tinymce.get(`editor-${id}`);
 
         editor.setContent(content);
