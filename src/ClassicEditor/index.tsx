@@ -44,7 +44,7 @@ interface ClassicEditorProps {
     setContent: (content: string) => void;
     rows?: number;
     showEditorTabs?: boolean;
-    mediaButtons?: boolean;
+    showMediaButtons?: boolean;
     plugins?: string;
     toolbar1?: string;
     toolbar2?: string;
@@ -63,7 +63,7 @@ export default function ClassicEditor({
     setContent,
     rows = 20,
     showEditorTabs = false,
-    mediaButtons = false,
+    showMediaButtons = false,
     plugins = 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview',
     toolbar1 = 'bold,italic,wp_add_media,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,fullscreen,wp_adv',
     toolbar2 = 'formatselect,strikethrough,hr,forecolor,pastetext,removeformat,unlink,outdent,indent,undo,redo',
@@ -181,7 +181,7 @@ export default function ClassicEditor({
         function initialize() {
             setTimeout(() => {
                 wp.editor.initialize(`editor-${id}`, {
-                    mediaButtons: mediaButtons,
+                    mediaButtons: showMediaButtons,
                     tinymce: {
                         tinymce: true,
                         plugins: plugins,
