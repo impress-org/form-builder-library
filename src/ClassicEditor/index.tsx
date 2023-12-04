@@ -44,8 +44,18 @@ interface ClassicEditorProps {
     setContent: (content: string) => void;
     rows?: number;
     showEditorTabs?: boolean;
+    mediaButtons?: boolean;
+    plugins?: string;
+    toolbar1?: string;
+    toolbar2?: string;
 }
 
+/**
+ * For references about how to set the TinyMCE toolbar and plugins, check the
+ * wp_tinymce_inline_scripts() on the wp-includes/script-loader.php file.
+ *
+ * @see https://github.com/WordPress/WordPress/blob/master/wp-includes/script-loader.php#L512C39-L646
+ */
 export default function ClassicEditor({
     id,
     label = null,
@@ -53,6 +63,10 @@ export default function ClassicEditor({
     setContent,
     rows = 20,
     showEditorTabs = false,
+    mediaButtons = false,
+    plugins = 'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview',
+    toolbar1 = 'bold,italic,wp_add_media,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,fullscreen,wp_adv',
+    toolbar2 = 'formatselect,strikethrough,hr,forecolor,pastetext,removeformat,unlink,outdent,indent,undo,redo',
 }: ClassicEditorProps) {
     const didMount = useRef(false);
 
@@ -164,24 +178,15 @@ export default function ClassicEditor({
             });
         }
 
-        /**
-         * For references about how to set the TinyMCE toolbar and plugins, check the
-         * wp_tinymce_inline_scripts() on the wp-includes/script-loader.php file.
-         *
-         * @see https://github.com/WordPress/WordPress/blob/master/wp-includes/script-loader.php#L512C39-L646
-         */
         function initialize() {
             setTimeout(() => {
                 wp.editor.initialize(`editor-${id}`, {
-                    mediaButtons: false,
+                    mediaButtons: mediaButtons,
                     tinymce: {
                         tinymce: true,
-                        plugins:
-                            'charmap,colorpicker,hr,lists,media,paste,tabfocus,textcolor,fullscreen,wordpress,wpautoresize,wpeditimage,wpemoji,wpgallery,wplink,wpdialogs,wptextpattern,wpview',
-                        toolbar1:
-                            'bold,italic,wp_add_media,bullist,numlist,blockquote,alignleft,aligncenter,alignright,link,fullscreen,wp_adv',
-                        toolbar2:
-                            'formatselect,strikethrough,hr,forecolor,pastetext,removeformat,unlink,outdent,indent,undo,redo',
+                        plugins: plugins,
+                        toolbar1: toolbar1,
+                        toolbar2: toolbar2,
                         setup: onSetup,
                         resize: false,
                         statusbar: false,
