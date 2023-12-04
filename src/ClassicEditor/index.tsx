@@ -43,9 +43,17 @@ interface ClassicEditorProps {
     content: string;
     setContent: (content: string) => void;
     rows?: number;
+    showEditorTabs?: boolean;
 }
 
-export default function ClassicEditor({id, label = null, content, setContent, rows = 20}: ClassicEditorProps) {
+export default function ClassicEditor({
+    id,
+    label = null,
+    content,
+    setContent,
+    rows = 20,
+    showEditorTabs = false,
+}: ClassicEditorProps) {
     const didMount = useRef(false);
 
     const [editorContent, setEditorContent] = useState(content);
@@ -217,7 +225,7 @@ export default function ClassicEditor({id, label = null, content, setContent, ro
     }
 
     return (
-        <div className={'givewp-classic-editor'}>
+        <div className={`givewp-classic-editor ${!!showEditorTabs && 'show-editor-tabs'}`}>
             <BaseControl id={`editor-base-control-${id}`} label={label}>
                 <textarea
                     rows={rows}

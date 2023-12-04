@@ -60,3 +60,10 @@
         box-sizing: content-box !important;
     }
 }
+
+.givewp-classic-editor.show-editor-tabs {
+    .wp-editor-tabs {
+        display: block !important;
+    }
+}
+
