@@ -1,0 +1,69 @@
+.mce-notification,
+.mce-inline-toolbar-grp,
+.mce-floatpanel {
+    z-index: 9999999999 !important;
+}
+
+.components-popover__content .givewp-classic-editor {
+    margin: 0.5rem;
+    width: initial;
+}
+
+.givewp-classic-editor {
+    width: 100%;
+
+    > label {
+        box-sizing: border-box;
+        display: block;
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.4;
+        margin-bottom: 0.7rem;
+        margin-top: 1.5rem;
+        max-width: 100%;
+        overflow: hidden;
+        padding-bottom: 0;
+        padding-top: 0;
+        text-overflow: ellipsis;
+        text-transform: uppercase;
+        white-space: nowrap;
+        z-index: 1;
+    }
+
+    .wp-editor-tools {
+        z-index: initial;
+    }
+
+    .wp-editor-tabs {
+        display: none;
+    }
+
+    .wp-editor-container {
+        border-radius: 0.125rem;
+        overflow: hidden;
+    }
+
+    .mce-top-part::before {
+        display: none;
+    }
+
+    .wp-editor-container,
+    .mce-tinymce {
+        box-shadow: none;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    .wp-switch-editor {
+        box-sizing: content-box !important;
+    }
+}
+
+.givewp-classic-editor.show-editor-tabs {
+    .wp-editor-tabs {
+        display: block !important;
+    }
+}
+
