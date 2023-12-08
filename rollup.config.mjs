@@ -10,8 +10,16 @@ export default defineConfig({
   input: 'src/index.ts',
   output: {
     dir: 'build',
-    format: 'es'
+    format: 'es',
+    sourcemap: true,
+    exports: 'named'
   },
-  plugins: [typescript(), sass()],
-  external
+  external,
+  plugins: [typescript({
+    tsconfig: './tsconfig.json',
+    declaration: true,
+    declarationDir: 'build',
+    rootDir: 'src',
+    exclude: ['**/*.test.ts']
+  }), sass()],
 });

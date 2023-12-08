@@ -4,6 +4,10 @@
     "description": "An assortment of components and hooks for working in the GiveWP Form Builder",
     "type": "module",
     "main": "build/index.js",
+    "types": "build/index.d.ts",
+    "files": [
+        "build"
+    ],
     "sideEffects": false,
     "repository": {
         "type": "git",
