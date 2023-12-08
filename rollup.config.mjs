@@ -14,21 +14,4 @@ export default defineConfig({
   },
   plugins: [typescript(), sass()],
   external
-})
-
-// export default defineConfig({
-//     input: 'src/index.ts',
-//     output: [
-//     {
-//       file: packageJson.main,
-//       format: 'cjs', // commonJS
-//       sourcemap: true,
-//     },
-//     {
-//       file: packageJson.module,
-//       format: 'esm', // ES Modules
-//       sourcemap: true,
-//     },
-//   ],
-//     external: [...Object.keys(globals), '@wordpress/components', '@wordpress/compose', '@wordpress/element'],
-// });
+});
