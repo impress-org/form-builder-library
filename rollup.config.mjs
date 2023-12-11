@@ -1,7 +1,7 @@
 import {readFileSync} from 'fs';
 import { defineConfig } from 'rollup';
 import typescript from '@rollup/plugin-typescript';
-import sass from 'rollup-plugin-sass';
+import postcss from 'rollup-plugin-postcss'
 
 const packageJson = readFileSync('./package.json');
 const external = Object.keys({...packageJson.dependencies, ...packageJson.devDependencies, ...packageJson.peerDependencies});
@@ -21,5 +21,7 @@ export default defineConfig({
     declarationDir: 'build',
     rootDir: 'src',
     exclude: ['**/*.test.ts']
-  }), sass()],
+  }), postcss({
+    minimize: true,
+  })],
 });
