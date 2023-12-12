@@ -5,9 +5,6 @@
     "type": "module",
     "main": "build/index.js",
     "types": "build/index.d.ts",
-    "files": [
-        "build"
-    ],
     "sideEffects": false,
     "repository": {
         "type": "git",
