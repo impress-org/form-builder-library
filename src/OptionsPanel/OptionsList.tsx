@@ -96,6 +96,11 @@ export default function OptionsList({
                                             handleUpdateOptionValue={handleUpdateOptionValue(index)}
                                             handleUpdateOptionChecked={handleUpdateOptionChecked(index, multiple)}
                                             readOnly={readOnly}
+                                            disabled={
+                                                multiple &&
+                                                option.checked &&
+                                                options.filter((option) => option.checked).length === 1
+                                            }
                                         />
                                     )}
                                 </Draggable>
