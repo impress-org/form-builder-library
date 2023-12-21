@@ -97,7 +97,7 @@ export default function OptionsList({
                                             handleUpdateOptionValue={handleUpdateOptionValue(index)}
                                             handleUpdateOptionChecked={handleUpdateOptionChecked(index, multiple)}
                                             readOnly={readOnly}
-                                            disableSoloCheckedOption={
+                                            disabled={
                                                 multiple &&
                                                 disableSoloCheckedOption &&
                                                 option.checked &&

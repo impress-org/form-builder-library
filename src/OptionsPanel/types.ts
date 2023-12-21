@@ -40,7 +40,7 @@ export interface OptionsItemProps {
     handleUpdateOptionChecked: (checked: boolean) => void;
     handleRemoveOption: () => void;
     readOnly?: boolean;
-    disableSoloCheckedOption?: boolean;
+    disabled?: boolean;
 }
 
 export interface OptionsHeaderProps {
