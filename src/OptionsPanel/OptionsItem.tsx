@@ -21,6 +21,7 @@ export default function OptionsItem({
     handleUpdateOptionChecked,
     handleRemoveOption,
     readOnly,
+    disabled,
 }: OptionsItemProps) {
     return (
         <div className={'givewp-options-list--item'} ref={provided.innerRef} {...provided.draggableProps}>
@@ -41,6 +42,7 @@ export default function OptionsItem({
                             checked={option.checked}
                             className={'givewp-options-list--item--checked'}
                             onClick={() => handleUpdateOptionChecked(!option.checked)}
+                            disabled={disabled}
                         />
                     )}
                 </div>

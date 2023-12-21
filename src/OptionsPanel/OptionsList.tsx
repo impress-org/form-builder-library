@@ -13,6 +13,7 @@ export default function OptionsList({
     defaultControlsTooltip,
     onRemoveOption,
     readOnly,
+    disableSoloCheckedOption,
 }: OptionsListProps) {
     const handleRemoveOption = (index: number) => (): void => {
         if (onRemoveOption) {
@@ -96,6 +97,12 @@ export default function OptionsList({
                                             handleUpdateOptionValue={handleUpdateOptionValue(index)}
                                             handleUpdateOptionChecked={handleUpdateOptionChecked(index, multiple)}
                                             readOnly={readOnly}
+                                            disabled={
+                                                multiple &&
+                                                disableSoloCheckedOption &&
+                                                option.checked &&
+                                                options.filter((option) => option.checked).length === 1
+                                            }
                                         />
                                     )}
                                 </Draggable>
