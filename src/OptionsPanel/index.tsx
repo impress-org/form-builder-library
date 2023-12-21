@@ -20,6 +20,7 @@ export default function Options({
     onRemoveOption,
     readOnly = false,
     label = __('Options', 'give'),
+    disableSoloCheckedOption = false,
 }: OptionsPanelProps) {
     const [showValues, setShowValues] = useState<boolean>(false);
 
@@ -56,6 +57,7 @@ export default function Options({
                         defaultControlsTooltip={defaultControlsTooltip}
                         onRemoveOption={onRemoveOption}
                         readOnly={readOnly}
+                        disableSoloCheckedOption={disableSoloCheckedOption}
                     />
                 </BaseControl>
             </PanelRow>

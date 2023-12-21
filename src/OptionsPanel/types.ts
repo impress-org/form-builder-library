@@ -11,6 +11,7 @@ export interface OptionsPanelProps {
     onAddOption?: () => void;
     label?: string;
     readOnly?: boolean;
+    disableSoloCheckedOption?: boolean;
 }
 
 export interface OptionsListProps {
@@ -23,6 +24,7 @@ export interface OptionsListProps {
     setOptions: (options: OptionProps[]) => void;
     onRemoveOption?: (option: OptionProps, index: number) => void;
     readOnly?: boolean;
+    disableSoloCheckedOption?: boolean;
 }
 
 export interface OptionsItemProps {
@@ -38,7 +40,7 @@ export interface OptionsItemProps {
     handleUpdateOptionChecked: (checked: boolean) => void;
     handleRemoveOption: () => void;
     readOnly?: boolean;
-    disabled?: boolean;
+    disableSoloCheckedOption?: boolean;
 }
 
 export interface OptionsHeaderProps {
