@@ -5,8 +5,7 @@
 }
 
 .components-popover__content .givewp-classic-editor {
-    margin: 0.5rem;
-    width: initial;
+    margin: 0 !important;
 }
 
 .givewp-classic-editor {
@@ -64,6 +63,26 @@
 .givewp-classic-editor.show-editor-tabs {
     .wp-editor-tabs {
         display: block !important;
+    }
+
+    .quicktags-toolbar {
+        input.button.button-small {
+            font-size: 12px !important;
+            min-height: 26px;
+            line-height: 2;
+            color: var(--wp-admin-theme-color);
+            border-color: var(--wp-admin-theme-color) !important;
+            background: #f6f7f7;
+            vertical-align: top;
+            inline-size: auto;
+            padding: 0 8px;
+        }
+    }
+
+    .wp-editor-wrap.html-active {
+        textarea {
+            border: 0;
+        }
     }
 }
 
