@@ -21,6 +21,7 @@ export default function Options({
     readOnly = false,
     label = __('Options', 'give'),
     disableSoloCheckedOption = false,
+    draggable = true,
 }: OptionsPanelProps) {
     const [showValues, setShowValues] = useState<boolean>(false);
 
@@ -58,6 +59,7 @@ export default function Options({
                         onRemoveOption={onRemoveOption}
                         readOnly={readOnly}
                         disableSoloCheckedOption={disableSoloCheckedOption}
+                        draggable={draggable}
                     />
                 </BaseControl>
             </PanelRow>

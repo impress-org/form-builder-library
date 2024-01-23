@@ -14,6 +14,7 @@ export default function OptionsList({
     onRemoveOption,
     readOnly,
     disableSoloCheckedOption,
+    draggable,
 }: OptionsListProps) {
     const handleRemoveOption = (index: number) => (): void => {
         if (onRemoveOption) {
@@ -103,6 +104,7 @@ export default function OptionsList({
                                                 option.checked &&
                                                 options.filter((option) => option.checked).length === 1
                                             }
+                                            draggable={draggable}
                                         />
                                     )}
                                 </Draggable>
