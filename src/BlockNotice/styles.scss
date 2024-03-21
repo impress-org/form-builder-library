@@ -1,0 +1,31 @@
+.givewp-block-notice {
+    padding: var(--givewp-spacing-3) var(--givewp-spacing-4);
+    background: #fffaf2;
+    border-radius: 2px;
+    border-left: 2px solid var(--givewp-orange-400);
+
+    span {
+        display: block;
+        font-size: 12px;
+    }
+
+    &__title {
+        font-weight: 600;
+        font-size: 0.75rem;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.33;
+        color: var(--givewp-grey-900);
+
+    }
+
+    &__description {
+        margin: var(--givewp-spacing-2) 0 var(--givewp-spacing-4) 0;
+        color: var(--givewp-grey-700);
+    }
+
+    &__anchor {
+        color: var(--givewp-grey-900);
+        cursor: pointer;
+    }
+}
