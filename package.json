@@ -29,6 +29,7 @@
     },
     "devDependencies": {
         "@rollup/plugin-typescript": "^11.1.5",
+        "@types/react": "^18.2.67",
         "@types/react-beautiful-dnd": "^13.1.7",
         "node-sass": "^9.0.0",
         "postcss": "^8.4.32",
