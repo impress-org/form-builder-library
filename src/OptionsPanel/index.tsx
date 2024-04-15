@@ -22,8 +22,10 @@ export default function Options({
     label = __('Options', 'give'),
     disableSoloCheckedOption = false,
     draggable = true,
+    hasDescriptions,
 }: OptionsPanelProps) {
     const [showValues, setShowValues] = useState<boolean>(false);
+    const [showDescription, setShowDescription] = useState<boolean>(hasDescriptions);
 
     const handleAddOption = (): void => {
         if (onAddOption) {
@@ -31,7 +33,7 @@ export default function Options({
             return;
         }
 
-        setOptions([...options, {label: '', value: '', checked: false}]);
+        setOptions([...options, {label: '', value: '', checked: false, description: ''}]);
     };
 
     return (
@@ -42,6 +44,16 @@ export default function Options({
                         label={__('Show values', 'give')}
                         checked={showValues}
                         onChange={() => setShowValues(!showValues)}
+                    />
+                </PanelRow>
+            )}
+            {hasDescriptions && (
+                <PanelRow>
+                    <ToggleControl
+                        className={'givewp-amount-description-toggle'}
+                        label={__('Enable amount description', 'give')}
+                        checked={showDescription}
+                        onChange={() => setShowDescription(!showDescription)}
                     />
                 </PanelRow>
             )}
@@ -60,6 +72,7 @@ export default function Options({
                         readOnly={readOnly}
                         disableSoloCheckedOption={disableSoloCheckedOption}
                         draggable={draggable}
+                        showDescription={showDescription}
                     />
                 </BaseControl>
             </PanelRow>
