@@ -6,7 +6,7 @@ import {OptionProps, OptionsListProps} from './types';
 export default function OptionsList({
     currency,
     options,
-    showValues,
+    showHidden,
     multiple,
     selectable,
     setOptions,
@@ -15,7 +15,6 @@ export default function OptionsList({
     readOnly,
     disableSoloCheckedOption,
     draggable,
-    showDescription,
 }: OptionsListProps) {
     const handleRemoveOption = (index: number) => (): void => {
         if (onRemoveOption) {
@@ -76,15 +75,6 @@ export default function OptionsList({
         setOptions(updatedOptions);
     };
 
-    const handleUpdateOptionDescription =
-        (index: number) =>
-        (description: string): void => {
-            const updatedOptions = [...options];
-
-            updatedOptions[index].description = description;
-            setOptions(updatedOptions);
-        };
-
     return (
         <DragDropContext onDragEnd={handleUpdateOptionsOrder}>
             <Droppable droppableId="options">
@@ -99,7 +89,7 @@ export default function OptionsList({
                                             currency={currency}
                                             provided={provided}
                                             option={option}
-                                            showValues={showValues}
+                                            showHidden={showHidden}
                                             multiple={multiple}
                                             selectable={selectable}
                                             defaultTooltip={defaultControlsTooltip}
@@ -107,7 +97,6 @@ export default function OptionsList({
                                             handleUpdateOptionLabel={handleUpdateOptionLabel(index)}
                                             handleUpdateOptionValue={handleUpdateOptionValue(index)}
                                             handleUpdateOptionChecked={handleUpdateOptionChecked(index, multiple)}
-                                            handleUpdateOptionDescription={handleUpdateOptionDescription(index)}
                                             readOnly={readOnly}
                                             disabled={
                                                 multiple &&
@@ -116,7 +105,6 @@ export default function OptionsList({
                                                 options.filter((option) => option.checked).length === 1
                                             }
                                             draggable={draggable}
-                                            showDescription={showDescription}
                                         />
                                     )}
                                 </Draggable>

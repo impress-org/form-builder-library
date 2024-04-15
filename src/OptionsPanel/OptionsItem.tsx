@@ -12,51 +12,49 @@ export default function OptionsItem({
     currency,
     provided,
     option,
-    showValues,
+    showHidden,
     multiple,
     selectable,
     defaultTooltip,
     handleUpdateOptionLabel,
     handleUpdateOptionValue,
     handleUpdateOptionChecked,
-    handleUpdateOptionDescription,
     handleRemoveOption,
     readOnly,
     disabled,
     draggable,
-    showDescription,
 }: OptionsItemProps) {
     return (
-        <div ref={provided.innerRef} {...provided.draggableProps}>
-            <div className={'givewp-options-list--item'}>
-                <span className={'givewp-options-list--item--draggable'} {...provided.dragHandleProps}>
-                    {draggable && <Icon icon={draggableIcon} />}
-                </span>
-                <Tooltip
-                    text={defaultTooltip ? defaultTooltip : __('Default', 'give')}
-                    position="top"
-                    placement="top"
-                    delay={500}
-                >
-                    {/* div is required (for some reason) for the Tooltip to work, do not remove */}
-                    <div>
-                        {selectable && (
-                            <input
-                                type={multiple ? 'checkbox' : 'radio'}
-                                checked={option.checked}
-                                className={'givewp-options-list--item--checked'}
-                                onClick={() => handleUpdateOptionChecked(!option.checked)}
-                                disabled={disabled}
-                            />
-                        )}
-                    </div>
-                </Tooltip>
-                <div
-                    className={cn('givewp-options-list--item--inputs', {
-                        ['givewp-options-list--item--inputs--open']: showValues,
-                    })}
-                >
-                    {isCurrencyMode(currency) ? (
+        <div className={'givewp-options-list--item'} ref={provided.innerRef} {...provided.draggableProps}>
+            <span className={'givewp-options-list--item--draggable'} {...provided.dragHandleProps}>
+                {draggable && <Icon icon={draggableIcon} />}
+            </span>
+            <Tooltip
+                text={defaultTooltip ? defaultTooltip : __('Default', 'give')}
+                position="top"
+                placement="top"
+                delay={500}
+            >
+                {/* div is required (for some reason) for the Tooltip to work, do not remove */}
+                <div>
+                    {selectable && (
+                        <input
+                            type={multiple ? 'checkbox' : 'radio'}
+                            checked={option.checked}
+                            className={'givewp-options-list--item--checked'}
+                            onClick={() => handleUpdateOptionChecked(!option.checked)}
+                            disabled={disabled}
+                        />
+                    )}
+                </div>
+            </Tooltip>
+            <div
+                className={cn('givewp-options-list--item--inputs', {
+                    ['givewp-options-list--item--inputs--open']: showHidden,
+                })}
+            >
+                {isCurrencyMode(currency) ? (
+                    <>
                         <CurrencyControl
                             currency={currency as CurrencyCode}
                             label={__('Donation amount level', 'give')}
@@ -67,44 +65,41 @@ export default function OptionsItem({
                                 handleUpdateOptionValue(value);
                             }}
                         />
-                    ) : (
-                        <>
+                        {showHidden && (
+                            <textarea
+                                value={option.label}
+                                onChange={(event) => handleUpdateOptionLabel(event.target.value)}
+                            />
+                        )}
+                    </>
+                ) : (
+                    <>
+                        <input
+                            type={'text'}
+                            value={option.label}
+                            placeholder={__('Label', 'give')}
+                            onChange={(event) => handleUpdateOptionLabel(event.target.value)}
+                            readOnly={readOnly}
+                        />
+
+                        {showHidden && (
                             <input
                                 type={'text'}
-                                value={option.label}
-                                placeholder={__('Label', 'give')}
-                                onChange={(event) => handleUpdateOptionLabel(event.target.value)}
+                                value={option.value}
+                                placeholder={__('Value', 'give')}
+                                onChange={(event) => handleUpdateOptionValue(event.target.value)}
                                 readOnly={readOnly}
                             />
-
-                            {showValues && (
-                                <input
-                                    type={'text'}
-                                    value={option.value}
-                                    placeholder={__('Value', 'give')}
-                                    onChange={(event) => handleUpdateOptionValue(event.target.value)}
-                                    readOnly={readOnly}
-                                />
-                            )}
-                        </>
-                    )}
-                </div>
-                {!readOnly && (
-                    <Button
-                        icon={minusCircle}
-                        className={'givewp-options-list--item--button'}
-                        onClick={() => handleRemoveOption()}
-                    />
+                        )}
+                    </>
                 )}
             </div>
-            {showDescription && (
-                <label className={'givewp-option-description'}>
-                    <textarea
-                        className={'givewp-options-description__input'}
-                        value={option.description}
-                        onChange={(event) => handleUpdateOptionDescription(event.target.value)}
-                    />
-                </label>
+            {!readOnly && (
+                <Button
+                    icon={minusCircle}
+                    className={'givewp-options-list--item--button'}
+                    onClick={() => handleRemoveOption()}
+                />
             )}
         </div>
     );

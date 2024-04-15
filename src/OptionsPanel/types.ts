@@ -13,13 +13,13 @@ export interface OptionsPanelProps {
     readOnly?: boolean;
     disableSoloCheckedOption?: boolean;
     draggable?: boolean;
-    hasDescriptions?: boolean;
+    toggleLabel?: string;
 }
 
 export interface OptionsListProps {
     currency?: CurrencyCode | string;
     options: OptionProps[];
-    showValues: boolean;
+    showHidden: boolean;
     multiple: boolean;
     selectable: boolean;
     defaultControlsTooltip?: string;
@@ -28,14 +28,13 @@ export interface OptionsListProps {
     readOnly?: boolean;
     disableSoloCheckedOption?: boolean;
     draggable?: boolean;
-    showDescription?: boolean;
 }
 
 export interface OptionsItemProps {
     currency?: CurrencyCode | string;
     provided: any;
     option: OptionProps;
-    showValues: boolean;
+    showHidden: boolean;
     multiple: boolean;
     selectable: boolean;
     defaultTooltip?: string;
@@ -47,7 +46,6 @@ export interface OptionsItemProps {
     readOnly?: boolean;
     disabled?: boolean;
     draggable?: boolean;
-    showDescription?: boolean;
 }
 
 export interface OptionsHeaderProps {
@@ -61,5 +59,4 @@ export interface OptionProps {
     label: string;
     value: string;
     checked: boolean;
-    description: string;
 }

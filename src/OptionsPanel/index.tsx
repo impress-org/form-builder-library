@@ -22,10 +22,10 @@ export default function Options({
     label = __('Options', 'give'),
     disableSoloCheckedOption = false,
     draggable = true,
-    hasDescriptions,
+    toggleLabel = __('Show values', 'give'),
 }: OptionsPanelProps) {
-    const [showValues, setShowValues] = useState<boolean>(false);
-    const [showDescription, setShowDescription] = useState<boolean>(hasDescriptions);
+    const initialShowHidden = options.some((option) => option.value && option.label);
+    const [showHidden, setShowHidden] = useState<boolean>(initialShowHidden);
 
     const handleAddOption = (): void => {
         if (onAddOption) {
@@ -33,37 +33,28 @@ export default function Options({
             return;
         }
 
-        setOptions([...options, {label: '', value: '', checked: false, description: ''}]);
+        setOptions([...options, {label: '', value: '', checked: false}]);
     };
 
     return (
         <>
-            {!isCurrencyMode(currency) && !readOnly && (
+            {!readOnly && (
                 <PanelRow>
                     <ToggleControl
-                        label={__('Show values', 'give')}
-                        checked={showValues}
-                        onChange={() => setShowValues(!showValues)}
+                        label={toggleLabel}
+                        checked={showHidden}
+                        onChange={() => setShowHidden(!showHidden)}
                     />
                 </PanelRow>
             )}
-            {hasDescriptions && (
-                <PanelRow>
-                    <ToggleControl
-                        className={'givewp-amount-description-toggle'}
-                        label={__('Enable amount description', 'give')}
-                        checked={showDescription}
-                        onChange={() => setShowDescription(!showDescription)}
-                    />
-                </PanelRow>
-            )}
+
             <PanelRow>
                 <BaseControl id={'give'}>
                     <OptionsHeader handleAddOption={handleAddOption} label={label} readOnly={readOnly} />
                     <OptionsList
                         currency={isCurrencyMode(currency) && (currency as CurrencyCode)}
                         options={options}
-                        showValues={showValues}
+                        showHidden={showHidden}
                         multiple={multiple}
                         selectable={selectable}
                         setOptions={setOptions}
@@ -72,7 +63,6 @@ export default function Options({
                         readOnly={readOnly}
                         disableSoloCheckedOption={disableSoloCheckedOption}
                         draggable={draggable}
-                        showDescription={showDescription}
                     />
                 </BaseControl>
             </PanelRow>
