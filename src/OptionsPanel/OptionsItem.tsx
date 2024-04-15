@@ -67,6 +67,7 @@ export default function OptionsItem({
                         />
                         {showHidden && (
                             <textarea
+                                className={'givewp-options-list__textarea'}
                                 value={option.label}
                                 onChange={(event) => handleUpdateOptionLabel(event.target.value)}
                             />
