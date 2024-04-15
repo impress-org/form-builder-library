@@ -70,3 +70,26 @@
         }
     }
 }
+
+.givewp-option-description {
+    display: flex;
+    align-self: stretch;
+    height: 64px;
+    width: 100%;
+    margin-left: var(--givewp-spacing-12);
+    margin-top: var(--givewp-spacing-1);
+
+    &__input {
+        padding: var(--givewp-spacing-2);
+        border: solid 1px #8c8c8c;
+        border-radius: 2px;
+    }
+}
+
+.givewp-amount-description-toggle {
+    label {
+        text-align: right;
+        margin-right: 0;
+        max-width: 100%;
+    }
+}
