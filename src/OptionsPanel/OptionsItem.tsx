@@ -12,7 +12,7 @@ export default function OptionsItem({
     currency,
     provided,
     option,
-    showValues,
+    showHidden,
     multiple,
     selectable,
     defaultTooltip,
@@ -50,20 +50,29 @@ export default function OptionsItem({
             </Tooltip>
             <div
                 className={cn('givewp-options-list--item--inputs', {
-                    ['givewp-options-list--item--inputs--open']: showValues,
+                    ['givewp-options-list--item--inputs--open']: showHidden,
                 })}
             >
                 {isCurrencyMode(currency) ? (
-                    <CurrencyControl
-                        currency={currency as CurrencyCode}
-                        label={__('Donation amount level', 'give')}
-                        hideLabelFromVision
-                        value={option.value}
-                        onValueChange={(value) => {
-                            handleUpdateOptionLabel(value);
-                            handleUpdateOptionValue(value);
-                        }}
-                    />
+                    <>
+                        <CurrencyControl
+                            currency={currency as CurrencyCode}
+                            label={__('Donation amount level', 'give')}
+                            hideLabelFromVision
+                            value={option.value}
+                            onValueChange={(value) => {
+                                handleUpdateOptionLabel(value);
+                                handleUpdateOptionValue(value);
+                            }}
+                        />
+                        {showHidden && (
+                            <textarea
+                                className={'givewp-options-list__textarea'}
+                                value={option.label}
+                                onChange={(event) => handleUpdateOptionLabel(event.target.value)}
+                            />
+                        )}
+                    </>
                 ) : (
                     <>
                         <input
@@ -74,7 +83,7 @@ export default function OptionsItem({
                             readOnly={readOnly}
                         />
 
-                        {showValues && (
+                        {showHidden && (
                             <input
                                 type={'text'}
                                 value={option.value}

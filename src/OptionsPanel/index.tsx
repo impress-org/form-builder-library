@@ -22,8 +22,11 @@ export default function Options({
     label = __('Options', 'give'),
     disableSoloCheckedOption = false,
     draggable = true,
+    toggleLabel = __('Show values', 'give'),
+    toggleEnabled = false,
+    onHandleToggle,
 }: OptionsPanelProps) {
-    const [showValues, setShowValues] = useState<boolean>(false);
+    const [showHidden, setShowHidden] = useState<boolean>(toggleEnabled);
 
     const handleAddOption = (): void => {
         if (onAddOption) {
@@ -34,24 +37,26 @@ export default function Options({
         setOptions([...options, {label: '', value: '', checked: false}]);
     };
 
+    const handleToggle = () => {
+        setShowHidden(!showHidden);
+        onHandleToggle(!showHidden);
+    };
+
     return (
         <>
-            {!isCurrencyMode(currency) && !readOnly && (
+            {!readOnly && (
                 <PanelRow>
-                    <ToggleControl
-                        label={__('Show values', 'give')}
-                        checked={showValues}
-                        onChange={() => setShowValues(!showValues)}
-                    />
+                    <ToggleControl label={toggleLabel} checked={showHidden} onChange={handleToggle} />
                 </PanelRow>
             )}
+
             <PanelRow>
                 <BaseControl id={'give'}>
                     <OptionsHeader handleAddOption={handleAddOption} label={label} readOnly={readOnly} />
                     <OptionsList
                         currency={isCurrencyMode(currency) && (currency as CurrencyCode)}
                         options={options}
-                        showValues={showValues}
+                        showHidden={showHidden}
                         multiple={multiple}
                         selectable={selectable}
                         setOptions={setOptions}

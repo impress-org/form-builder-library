@@ -6,7 +6,7 @@ import {OptionProps, OptionsListProps} from './types';
 export default function OptionsList({
     currency,
     options,
-    showValues,
+    showHidden,
     multiple,
     selectable,
     setOptions,
@@ -89,7 +89,7 @@ export default function OptionsList({
                                             currency={currency}
                                             provided={provided}
                                             option={option}
-                                            showValues={showValues}
+                                            showHidden={showHidden}
                                             multiple={multiple}
                                             selectable={selectable}
                                             defaultTooltip={defaultControlsTooltip}

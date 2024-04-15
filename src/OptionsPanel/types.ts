@@ -13,12 +13,15 @@ export interface OptionsPanelProps {
     readOnly?: boolean;
     disableSoloCheckedOption?: boolean;
     draggable?: boolean;
+    toggleLabel?: string;
+    toggleEnabled?: boolean;
+    onHandleToggle?: (value: boolean) => void;
 }
 
 export interface OptionsListProps {
     currency?: CurrencyCode | string;
     options: OptionProps[];
-    showValues: boolean;
+    showHidden: boolean;
     multiple: boolean;
     selectable: boolean;
     defaultControlsTooltip?: string;
@@ -33,7 +36,7 @@ export interface OptionsItemProps {
     currency?: CurrencyCode | string;
     provided: any;
     option: OptionProps;
-    showValues: boolean;
+    showHidden: boolean;
     multiple: boolean;
     selectable: boolean;
     defaultTooltip?: string;
