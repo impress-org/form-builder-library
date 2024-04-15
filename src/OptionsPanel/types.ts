@@ -14,6 +14,8 @@ export interface OptionsPanelProps {
     disableSoloCheckedOption?: boolean;
     draggable?: boolean;
     toggleLabel?: string;
+    toggleEnabled?: boolean;
+    onHandleToggle?: (value: boolean) => void;
 }
 
 export interface OptionsListProps {

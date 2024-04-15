@@ -23,9 +23,10 @@ export default function Options({
     disableSoloCheckedOption = false,
     draggable = true,
     toggleLabel = __('Show values', 'give'),
+    toggleEnabled = false,
+    onHandleToggle,
 }: OptionsPanelProps) {
-    const initialShowHidden = options.some((option) => option.value && option.label);
-    const [showHidden, setShowHidden] = useState<boolean>(initialShowHidden);
+    const [showHidden, setShowHidden] = useState<boolean>(toggleEnabled);
 
     const handleAddOption = (): void => {
         if (onAddOption) {
@@ -36,15 +37,16 @@ export default function Options({
         setOptions([...options, {label: '', value: '', checked: false}]);
     };
 
+    const handleToggle = () => {
+        setShowHidden(!showHidden);
+        onHandleToggle(!showHidden);
+    };
+
     return (
         <>
             {!readOnly && (
                 <PanelRow>
-                    <ToggleControl
-                        label={toggleLabel}
-                        checked={showHidden}
-                        onChange={() => setShowHidden(!showHidden)}
-                    />
+                    <ToggleControl label={toggleLabel} checked={showHidden} onChange={handleToggle} />
                 </PanelRow>
             )}
 
