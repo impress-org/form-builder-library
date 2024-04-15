@@ -13,6 +13,7 @@ export interface OptionsPanelProps {
     readOnly?: boolean;
     disableSoloCheckedOption?: boolean;
     draggable?: boolean;
+    hasDescriptions?: boolean;
 }
 
 export interface OptionsListProps {
@@ -27,6 +28,7 @@ export interface OptionsListProps {
     readOnly?: boolean;
     disableSoloCheckedOption?: boolean;
     draggable?: boolean;
+    showDescription?: boolean;
 }
 
 export interface OptionsItemProps {
@@ -41,9 +43,11 @@ export interface OptionsItemProps {
     handleUpdateOptionValue: (value: string) => void;
     handleUpdateOptionChecked: (checked: boolean) => void;
     handleRemoveOption: () => void;
+    handleUpdateOptionDescription?: (description: string) => void;
     readOnly?: boolean;
     disabled?: boolean;
     draggable?: boolean;
+    showDescription?: boolean;
 }
 
 export interface OptionsHeaderProps {
@@ -57,4 +61,5 @@ export interface OptionProps {
     label: string;
     value: string;
     checked: boolean;
+    description: string;
 }
