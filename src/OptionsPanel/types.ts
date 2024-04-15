@@ -42,7 +42,6 @@ export interface OptionsItemProps {
     handleUpdateOptionValue: (value: string) => void;
     handleUpdateOptionChecked: (checked: boolean) => void;
     handleRemoveOption: () => void;
-    handleUpdateOptionDescription?: (description: string) => void;
     readOnly?: boolean;
     disabled?: boolean;
     draggable?: boolean;
