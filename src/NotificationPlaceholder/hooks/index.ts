@@ -69,20 +69,10 @@ const dismissNotification = async (id: string) => {
  * Hook
  */
 export const useNotifications = (): [NotificationState, Function] => {
-    useEffect(() => {
-        fetchNotifications().then((notifications) => {
-            dispatch({
-                type: 'SET_NOTIFICATIONS',
-                notifications
-            });
-        });
-    }, []);
-
     const [state, dispatch] = useReducer((state: NotificationState, action: NotificationAction) => {
         switch (action.type) {
             case 'SET_NOTIFICATIONS':
                 return {
-                    ...state,
                     isLoading: false,
                     notifications: action.notifications,
                 };
@@ -93,6 +83,15 @@ export const useNotifications = (): [NotificationState, Function] => {
         isLoading: true,
         notifications: []
     });
+
+    useEffect(() => {
+        fetchNotifications().then((notifications) => {
+            dispatch({
+                type: 'SET_NOTIFICATIONS',
+                notifications
+            });
+        });
+    }, []);
 
     return [
         state as NotificationState,
