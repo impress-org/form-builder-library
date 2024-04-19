@@ -50,7 +50,7 @@ const fetchNotifications = async () => {
  */
 const dismissNotification = async (id: string) => {
     const response = await fetch('/wp-json/give-api/v2/dismiss-notification', {
-        method: 'DELETE',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
             'X-WP-Nonce': window.GiveNotifications.apiNonce
