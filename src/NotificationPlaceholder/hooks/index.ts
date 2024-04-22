@@ -1,4 +1,4 @@
-import {useEffect, useReducer} from 'react';
+import {useEffect, useState} from 'react';
 
 declare const window: {
     GiveNotifications: {
@@ -8,11 +8,6 @@ declare const window: {
 
 interface NotificationState {
     isLoading: boolean;
-    notifications: string[];
-}
-
-interface NotificationAction {
-    type: string;
     notifications: string[];
 }
 
@@ -69,36 +64,26 @@ const dismissNotification = async (id: string) => {
  * Hook
  */
 export const useNotifications = (): [NotificationState, Function] => {
-    const [state, dispatch] = useReducer((state: NotificationState, action: NotificationAction) => {
-        switch (action.type) {
-            case 'SET_NOTIFICATIONS':
-                return {
-                    isLoading: false,
-                    notifications: action.notifications,
-                };
-        }
-
-        return state;
-    }, {
+    const [state, setState] = useState<NotificationState>({
         isLoading: true,
         notifications: []
     });
 
     useEffect(() => {
         fetchNotifications().then((notifications) => {
-            dispatch({
-                type: 'SET_NOTIFICATIONS',
+            setState({
+                isLoading: false,
                 notifications
             });
         });
     }, []);
 
     return [
-        state as NotificationState,
+        state,
         (id: string) => {
             dismissNotification(id).then((notifications) => {
-                dispatch({
-                    type: 'SET_NOTIFICATIONS',
+                setState({
+                    isLoading: false,
                     notifications
                 });
             })

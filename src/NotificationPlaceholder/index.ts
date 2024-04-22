@@ -1,8 +1,9 @@
+import {MouseEventHandler} from 'react';
 import {useNotifications} from './hooks';
 
 interface NotificationProps {
     id: string;
-    render: (dismiss: Function) => JSX.Element
+    render: (dismiss: MouseEventHandler) => JSX.Element
 }
 
 export default ({id, render}: NotificationProps) => {
