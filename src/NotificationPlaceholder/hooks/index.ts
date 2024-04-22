@@ -33,9 +33,7 @@ const fetchNotifications = async () => {
 
     const data = response.ok ? await response.json() : [];
 
-    if (data.length > 0) {
-        sessionStorage.setItem('give_notifications', JSON.stringify(data));
-    }
+    sessionStorage.setItem('give_notifications', JSON.stringify(data));
 
     return data;
 }
