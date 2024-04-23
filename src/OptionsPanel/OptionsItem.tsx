@@ -61,7 +61,6 @@ export default function OptionsItem({
                             hideLabelFromVision
                             value={option.value}
                             onValueChange={(value) => {
-                                handleUpdateOptionLabel(value);
                                 handleUpdateOptionValue(value);
                             }}
                         />
