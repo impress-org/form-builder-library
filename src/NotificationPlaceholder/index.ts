@@ -1,13 +1,14 @@
 import {MouseEventHandler} from 'react';
-import {useNotifications} from './hooks';
+import {useNotifications, StorageType} from './hooks';
 
 interface NotificationProps {
     id: string;
-    render: (dismiss: MouseEventHandler) => JSX.Element
+    render: (dismiss: MouseEventHandler) => JSX.Element,
+    type: StorageType;
 }
 
-export default ({id, render}: NotificationProps) => {
-    const [{isLoading, notifications}, dismissNotification] = useNotifications();
+export default ({id, render, type = 'user'}: NotificationProps) => {
+    const [{isLoading, notifications}, dismissNotification] = useNotifications(type);
 
     if (isLoading || notifications.includes(id)) {
         return null;
