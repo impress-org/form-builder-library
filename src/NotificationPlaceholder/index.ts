@@ -4,7 +4,7 @@ import {useNotifications, StorageType} from './hooks';
 interface NotificationProps {
     id: string;
     render: (dismiss: MouseEventHandler) => JSX.Element,
-    type: StorageType;
+    type?: StorageType;
 }
 
 export default ({id, render, type = 'user'}: NotificationProps) => {
