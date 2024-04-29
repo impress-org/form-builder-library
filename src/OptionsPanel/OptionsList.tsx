@@ -15,6 +15,7 @@ export default function OptionsList({
     readOnly,
     disableSoloCheckedOption,
     draggable,
+    maxLabelLength,
 }: OptionsListProps) {
     const handleRemoveOption = (index: number) => (): void => {
         if (onRemoveOption) {
@@ -105,6 +106,7 @@ export default function OptionsList({
                                                 options.filter((option) => option.checked).length === 1
                                             }
                                             draggable={draggable}
+                                            maxLabelLength={maxLabelLength}
                                         />
                                     )}
                                 </Draggable>

@@ -16,6 +16,7 @@ export interface OptionsPanelProps {
     toggleLabel?: string;
     toggleEnabled?: boolean;
     onHandleToggle?: (value: boolean) => void;
+    maxLabelLength?: number;
 }
 
 export interface OptionsListProps {
@@ -30,6 +31,7 @@ export interface OptionsListProps {
     readOnly?: boolean;
     disableSoloCheckedOption?: boolean;
     draggable?: boolean;
+    maxLabelLength?: number;
 }
 
 export interface OptionsItemProps {
@@ -47,6 +49,7 @@ export interface OptionsItemProps {
     readOnly?: boolean;
     disabled?: boolean;
     draggable?: boolean;
+    maxLabelLength?: number;
 }
 
 export interface OptionsHeaderProps {
