@@ -25,6 +25,7 @@ export default function Options({
     toggleLabel = __('Show values', 'give'),
     toggleEnabled = false,
     onHandleToggle,
+    maxLabelLength = 0,
 }: OptionsPanelProps) {
     const [showHidden, setShowHidden] = useState<boolean>(toggleEnabled);
 
@@ -65,6 +66,7 @@ export default function Options({
                         readOnly={readOnly}
                         disableSoloCheckedOption={disableSoloCheckedOption}
                         draggable={draggable}
+                        maxLabelLength={maxLabelLength}
                     />
                 </BaseControl>
             </PanelRow>

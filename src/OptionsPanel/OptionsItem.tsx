@@ -23,6 +23,7 @@ export default function OptionsItem({
     readOnly,
     disabled,
     draggable,
+    maxLabelLength,
 }: OptionsItemProps) {
     return (
         <div className={'givewp-options-list--item'} ref={provided.innerRef} {...provided.draggableProps}>
@@ -65,11 +66,19 @@ export default function OptionsItem({
                             }}
                         />
                         {showHidden && (
-                            <textarea
-                                className={'givewp-options-list__textarea'}
-                                value={option.label}
-                                onChange={(event) => handleUpdateOptionLabel(event.target.value)}
-                            />
+                            <div className={'givewp-options-list__textarea-wrapper'}>
+                                <textarea
+                                    className={'givewp-options-list__textarea'}
+                                    value={option.label}
+                                    onChange={(event) => handleUpdateOptionLabel(event.target.value)}
+                                    maxLength={maxLabelLength > 0 ? maxLabelLength : undefined}
+                                />
+                                {maxLabelLength > 0 && (
+                                    <span className={'givewp-options-list__textarea-counter'}>
+                                        {option?.label?.length ?? 0}/{maxLabelLength}
+                                    </span>
+                                )}
+                            </div>
                         )}
                     </>
                 ) : (
