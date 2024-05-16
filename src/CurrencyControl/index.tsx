@@ -1,7 +1,7 @@
 import type {CurrencyInputProps} from 'react-currency-input-field';
 import CurrencyInput from 'react-currency-input-field';
 import {useInstanceId} from '@wordpress/compose';
-import {useState} from '@wordpress/element';
+import {useEffect, useState} from '@wordpress/element';
 import {BaseControl} from '@wordpress/components';
 import {CurrencyCode} from './CurrencyCode';
 import parseValueFromLocale from './parseValueFromLocale';
@@ -23,6 +23,12 @@ export default function CurrencyControl({
     ...rest
 }: CurrencyControlProps) {
     const [localizedValue, setLocalizedValue] = useState(value);
+
+     useEffect(() => {
+        if (value !== localizedValue){
+            setLocalizedValue(value);
+        }
+    }, [value]);
 
     // simplified implementation of useBaseControlProps()
     const uniqueId = useInstanceId(BaseControl, 'wp-components-base-control');
