@@ -17,6 +17,7 @@ export interface OptionsPanelProps {
     toggleEnabled?: boolean;
     onHandleToggle?: (value: boolean) => void;
     maxLabelLength?: number;
+    showToggle?: boolean;
 }
 
 export interface OptionsListProps {
