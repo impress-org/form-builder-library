@@ -26,7 +26,7 @@ export default function Options({
     toggleEnabled = false,
     onHandleToggle,
     maxLabelLength = 0,
-    showToggle = false
+    showToggle
 }: OptionsPanelProps) {
     const [showHidden, setShowHidden] = useState<boolean>(toggleEnabled);
 
