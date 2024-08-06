@@ -50,6 +50,7 @@ export interface OptionsItemProps {
     disabled?: boolean;
     draggable?: boolean;
     maxLabelLength?: number;
+    isSingleOption: boolean;
 }
 
 export interface OptionsHeaderProps {
