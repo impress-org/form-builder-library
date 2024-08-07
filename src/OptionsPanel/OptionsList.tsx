@@ -107,6 +107,7 @@ export default function OptionsList({
                                             }
                                             draggable={draggable}
                                             maxLabelLength={maxLabelLength}
+                                            isSingleOption={options.length === 1}
                                         />
                                     )}
                                 </Draggable>

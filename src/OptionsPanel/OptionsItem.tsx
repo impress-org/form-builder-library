@@ -24,6 +24,7 @@ export default function OptionsItem({
     disabled,
     draggable,
     maxLabelLength,
+    isSingleOption
 }: OptionsItemProps) {
     return (
         <div className={'givewp-options-list--item'} ref={provided.innerRef} {...provided.draggableProps}>
@@ -103,7 +104,7 @@ export default function OptionsItem({
                     </>
                 )}
             </div>
-            {!readOnly && (
+            {!readOnly && !isSingleOption && (
                 <Button
                     icon={minusCircle}
                     className={'givewp-options-list--item--button'}

@@ -17,6 +17,7 @@ export interface OptionsPanelProps {
     toggleEnabled?: boolean;
     onHandleToggle?: (value: boolean) => void;
     maxLabelLength?: number;
+    showToggle?: boolean;
 }
 
 export interface OptionsListProps {
@@ -50,6 +51,7 @@ export interface OptionsItemProps {
     disabled?: boolean;
     draggable?: boolean;
     maxLabelLength?: number;
+    isSingleOption: boolean;
 }
 
 export interface OptionsHeaderProps {
