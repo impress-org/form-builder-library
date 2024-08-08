@@ -1,6 +1,6 @@
 {
     "name": "@givewp/form-builder-library",
-    "version": "1.6.1",
+    "version": "1.7.0",
     "description": "An assortment of components and hooks for working in the GiveWP Form Builder",
     "type": "module",
     "main": "build/index.js",
