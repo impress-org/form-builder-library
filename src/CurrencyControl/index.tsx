@@ -13,6 +13,11 @@ interface CurrencyControlProps extends CurrencyInputProps {
     help?: string;
 }
 
+const formatter = new Intl.NumberFormat(navigator.language);
+const groupSeparator = formatter.format(1000).replace(/[0-9]/g, '');
+const decimalSeparator = formatter.format(1.1).replace(/[0-9]/g, '');
+
+
 export default function CurrencyControl({
     label,
     help,
@@ -24,8 +29,8 @@ export default function CurrencyControl({
 }: CurrencyControlProps) {
     const [localizedValue, setLocalizedValue] = useState(value);
 
-     useEffect(() => {
-        if (value !== localizedValue){
+    useEffect(() => {
+        if (value !== localizedValue) {
             setLocalizedValue(value);
         }
     }, [value]);
@@ -42,6 +47,15 @@ export default function CurrencyControl({
         <BaseControl label={label} help={help} id={uniqueId} hideLabelFromVision={hideLabelFromVision}>
             <CurrencyInput
                 id={uniqueId}
+                disableAbbreviations
+                decimalSeparator={decimalSeparator}
+                groupSeparator={
+                    /**
+                     * Replace non-breaking space to avoid conflict with the suffix separator.
+                     * @link https://github.com/cchanxzy/react-currency-input-field/issues/266
+                     */
+                    groupSeparator.replace(/\u00A0/g, ' ')
+                }
                 value={localizedValue}
                 onValueChange={updateValue}
                 className={'components-text-control__input'}
