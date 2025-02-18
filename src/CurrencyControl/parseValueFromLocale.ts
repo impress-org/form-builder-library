@@ -3,11 +3,17 @@ export default function parseValueFromLocale(amount: string): string {
         return amount;
     }
 
+    const {groupSeparator, decimalSeparator} = getNumberFormattingParts();
+
+    return amount.replaceAll(groupSeparator, '').replace(decimalSeparator, '.');
+}
+
+export function getNumberFormattingParts(): { groupSeparator: string; decimalSeparator: string } {
     const numberFormat = new Intl.NumberFormat(window.navigator.language);
     const parts = numberFormat.formatToParts(1234.56);
 
-    let groupSeparator: string;
-    let decimalSeparator: string;
+    let groupSeparator = '';
+    let decimalSeparator = '';
 
     for (const part of parts) {
         if (part.type === 'group') {
@@ -17,5 +23,5 @@ export default function parseValueFromLocale(amount: string): string {
         }
     }
 
-    return amount.replaceAll(groupSeparator, '').replace(decimalSeparator, '.');
+    return {groupSeparator, decimalSeparator};
 }

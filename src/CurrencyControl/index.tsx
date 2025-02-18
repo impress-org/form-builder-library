@@ -4,7 +4,7 @@ import {useInstanceId} from '@wordpress/compose';
 import {useEffect, useState} from '@wordpress/element';
 import {BaseControl} from '@wordpress/components';
 import {CurrencyCode} from './CurrencyCode';
-import parseValueFromLocale from './parseValueFromLocale';
+import parseValueFromLocale, {getNumberFormattingParts} from './parseValueFromLocale';
 
 interface CurrencyControlProps extends CurrencyInputProps {
     currency: CurrencyCode;
@@ -12,10 +12,6 @@ interface CurrencyControlProps extends CurrencyInputProps {
     hideLabelFromVision?: boolean;
     help?: string;
 }
-
-const formatter = new Intl.NumberFormat(navigator.language);
-const groupSeparator = formatter.format(1000).replace(/[0-9]/g, '');
-const decimalSeparator = formatter.format(1.1).replace(/[0-9]/g, '');
 
 
 export default function CurrencyControl({
@@ -37,6 +33,8 @@ export default function CurrencyControl({
 
     // simplified implementation of useBaseControlProps()
     const uniqueId = useInstanceId(BaseControl, 'wp-components-base-control');
+
+    const {groupSeparator, decimalSeparator} = getNumberFormattingParts();
 
     const updateValue = (value: string) => {
         setLocalizedValue(value);
